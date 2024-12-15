@@ -7,7 +7,7 @@ import { ref, computed } from 'vue';
 const people = ref<People[]>();
 people.value = data_people.getPeople();
 
-const sortType = ref('')
+const sortType = ref('a-z')
 
 function handleOptionChange(){
   console.log(sortType.value)
@@ -33,23 +33,27 @@ const filtered = computed(()=>{
   <div class="container">
     <span>Sort: </span>
     <select @change="handleOptionChange" v-model="sortType" name="sort" id="sort">
-      <option value="a-z">a-z</option>
+      <option selected value="a-z">a-z</option>
       <option value="z-a">z-a</option>
     </select>
   </div>
   <div class="person-container">
-  <PeopleCard v-for="person in filtered" :person="person"/>  
+    <RouterLink v-for="person in filtered" :to="`/details/${person.id}`" :people="people">
+      <PeopleCard :person="person" />  
+    </RouterLink>
   </div>
 </template>
 
 
 <style scoped>
-   .person-container {
-   display: grid;
-   grid-template-columns: repeat(4,1fr);
-   padding: 20px;
-   justify-items: center;
-   flex-direction: column;
-   }
+  .person-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 20px;
+    justify-items: center;
+    gap: 20px;
+    flex-direction: column;
+  }
+
 
 </style>

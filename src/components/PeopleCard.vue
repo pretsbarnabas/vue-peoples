@@ -10,8 +10,6 @@ defineProps<{person: People}>()
       <img :src="person.avatar" :alt="person.avatar" class="person-card-image">
       <div class="person-card-content">
         <h2 class="person-card-firstname">{{ person.first_name }}</h2>
-        <p class="person-card-lastname">{{ person.last_name }}</p>
-        <p class="person-card-email">{{ person.email }}</p>
       </div>
     </div>
 </template>
@@ -32,7 +30,7 @@ defineProps<{person: People}>()
 
    .person-card-image {
    width: 100%;
-   height: 300px;
+   height: fit-content;
    object-fit: cover;
    transition: opacity 0.3s ease;
    }
@@ -46,23 +44,7 @@ defineProps<{person: People}>()
    font-weight: 600;
    color: #333;
    margin-bottom: 8px;
-   }
-
-   .person-card-lastname {
-   font-size: 1em;
-   color: #777;
-   margin-bottom: 12px;
-   }
-
-   .person-card-email {
-   font-size: 0.95em;
-   color: #555;
-   line-height: 1.5;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   -webkit-line-clamp: 3;
-   display: -webkit-box;
-   -webkit-box-orient: vertical;
+   text-decoration: none;
    }
 
    .person-card:hover .person-card-image {
